@@ -7,7 +7,7 @@ para uso de desarrollo Nacional_
 
 _En este caso, me tomé la molestia de primero que nada presentarle la formula para que pueda ser implementada en los diferentes lenguajes que gustes o necesites.
 Pero tambien les dejé algunos ejemplos funcionales en los principales Lenguajes de programacion y los que conozco_
-**|JavaScript |Java |Delphi |Pyhton |** 
+**|JavaScript |Java |Delphi |Python |** 
 
 _En cada una de las carpetas les dejo el ejemplo explicado de que hice_
 
