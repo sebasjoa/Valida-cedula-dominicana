@@ -42,6 +42,8 @@ def onclic1():
         uj = ( p / 10) * 10
         if uj < result :
             result = (uj + 10) - result
+        else :
+            result = uj - result 
         
         if result == int(a[10]) :
             labela.set("Cedula Correcta")

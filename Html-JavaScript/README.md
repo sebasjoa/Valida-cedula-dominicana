@@ -1,4 +1,4 @@
-# Validador de Cedulas Dominicanas (Certificado) | DELPHI
+# Validador de Cedulas Dominicanas (Certificado) | JAVASCRIPT
 
 _En este projecto se desarrolla la formula de como se hace la validacion correcta del documento de identidad electoral de Rep. Dominicana.
 para uso de desarrollo Nacional_
@@ -11,82 +11,50 @@ _Aqui hice el ejemplo en JAvaScript con un input para darle un aspecto grafico p
 
 ## Funcion Implementada 
 
-_En la funcion ValidaCedula hago la parametrizacion de lugar pidiendo a cedula. 
+_En la funcion Valida hago la parametrizacion de lugar pidiendo a cedula. 
  Este contiene el mismo engranaje de la formula principal._
 
 ```
-function TForm2.ValidaCedula(Num: String): boolean;
-type
-  ArrayDe11=Array[1..11] of Integer;
-var
- R       :ArrayDe11;
- Cedula  :ArrayDe11;
- I, a, b, Suma, Division,
- DigitoVerif:Integer;
- comodin : string;
-begin
-memo1.Lines.Clear;
-result:=false;
-Num  := StringReplace(num, '-', '',[rfReplaceAll]);
-if Length(Num) = 11 then
-  begin
-    try
-      for i:=1 to 11 do Cedula[i]:=StrToInt(Num[i]);
-    except
-      Exit;
-    end;
-   end
-    else Exit;
+ function valida(cedula){
+                cedula = document.getElementById('cedula').value;
+                c = cedula.split('');
+                v = [1,2,1,2,1,2,1,2,1,2]
+              var result = 0 ; 
+              var ar ;
+              var up;
+              var oc ;
+              for (i=0;i <10;i++){  
+              up =c[i] * v[i];
+              ab = up;
+              if ( ab >= 10 ) {
+                oc = ab.toString()
+                        .split('')
+                        .map(x => parseInt(x) )
+                        .reduce( (x, y) => x + y);
+              }else {
+                oc = ab;
+              }
+              result = parseFloat(result) + parseFloat(oc);   
+              }
+                dp = result;
+                ac = dp.toString().split('')[0] + '0';
+                ac = parseInt(ac);
+                uj = (ac / 10) * 10;
+                  if (uj < dp ) {
+                  dp = (uj + 10) - dp; 
+                  } else { 
+                    dp = uj - dp
+                  }
 
-Suma:=0;
-
-for i:=1 to 10 do
-  Begin
-  R[i]:=Cedula[i]*TablaCedula[i];
-
-  if length(inttostr(R[i])) > 1 then
-     Begin
-         a := strtoint(copy(R[i].ToString,0,1));
-         b := strtoint(copy(inttostr(R[i]),2,1));
-         comodin := ' > 1 ';
-       end
-      else
-       Begin
-         a := 0;
-         b := strtoint(copy(inttostr(R[i]),0,1));
-         comodin := ' <= 1 ';
-       end;
-        // Calcular la sumatoria de los resultados
-       memo1.lines.add(Cedula[i].ToString+' x '+TablaCedula[i].ToString+' = '+R[i].ToString+comodin+' = '+(a+b).ToString );
-       Suma:=Suma+a+b;
-  end;
-Division:=(Suma div 10)*10;
-memo1.Lines.Add('Resultado = '+Suma.ToString);
-memo1.Lines.Add('Recalculo = (('+Suma.ToString+' / 10) * 10) = '+Division.ToString );
-
-if Division < Suma then
-  begin
-   memo1.Lines.Add('Verificador Si('+Division.ToString+' < '+Suma.ToString+') = ('+Division.ToString+' + 10) - '+Suma.ToString );
-   Division := Division + 10;
-  end
- else
-  memo1.Lines.Add('Verificador ('+Division.ToString+' - '+Suma.ToString+') ' );
-
-  DigitoVerif := Division - Suma;
-
-  memo1.Lines.Add('DigitoVerif = '+DigitoVerif.ToString);
-
-if DigitoVerif = Cedula[11] then
-    result:=true;
-
-  if result = true then
-    Memo1.Lines.Add('CEDULA CORRECTA!!!!')
-   else
-    Memo1.Lines.Add('CEDULA INCORRECTA!!!!')
-
-
-end; 
-
+              if (c[10] == dp) {             
+                
+                document.getElementById('result').innerHTML = '<p> Cedula Correcta </p>';
+              } else {
+                
+                document.getElementById('result').innerHTML = '<p> Cedula Incorrecta </p>';
+                
+              }
+        }
 ```
 
 

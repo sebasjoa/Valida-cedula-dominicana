@@ -149,7 +149,9 @@ public class ValidaCedula extends javax.swing.JFrame {
                 ac = (ac / 10) * 10;                
                   if (ac < result ) {
                   ac = (ac + 10) - result; 
-                  }   
+                  } else {
+                      ac = ac -result;
+                  }  
 
               if ( Character.getNumericValue(caracteres[10]) == ac) {            
                 

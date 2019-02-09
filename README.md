@@ -50,7 +50,9 @@ Var cedula = 40200571939
             
             if (verif2 < adicion ) { // aqui se verifica si el valor obtenido es menor que la adicion 
             verif2 = (verif2 + 10) - adicion; 
-            }   
+            }   else {
+              verif2 = verif2 - adicion;
+            }
 
 
               // si el valor obtenido es igual al codigo verificador entonces la cedula es correcta y valida

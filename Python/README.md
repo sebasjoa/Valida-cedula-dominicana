@@ -1,91 +1,50 @@
-# Validador de Cedulas Dominicanas (Certificado) | DELPHI
+# Validador de Cedulas Dominicanas (Certificado) | PYTHON
 
 _En este projecto se desarrolla la formula de como se hace la validacion correcta del documento de identidad electoral de Rep. Dominicana.
 para uso de desarrollo Nacional_
 
 ## Comenzando 🚀
 
-_Aqui hice el ejemplo en JAvaScript con un input para darle un aspecto grafico para la prueba, teniendo en cuenta que faltan las validaciones de lugar,
+_Aqui utilizo la libreria Tkinter para hacerlo grafico y que se amigable para la prueba. pero lo importante es la formula, teniendo en cuenta que faltan las validaciones de lugar,
  como que solo admita numeros, que solo tenga un length maximo de 11 y ponerle el formato de cedula_
 
 
 ## Funcion Implementada 
 
-_En la funcion ValidaCedula hago la parametrizacion de lugar pidiendo a cedula. 
- Este contiene el mismo engranaje de la formula principal._
+_En la funcion onclic1 hago la parametrizacion de lugar. Este contiene el mismo engranaje de la formula principal._
 
 ```
-function TForm2.ValidaCedula(Num: String): boolean;
-type
-  ArrayDe11=Array[1..11] of Integer;
-var
- R       :ArrayDe11;
- Cedula  :ArrayDe11;
- I, a, b, Suma, Division,
- DigitoVerif:Integer;
- comodin : string;
-begin
-memo1.Lines.Clear;
-result:=false;
-Num  := StringReplace(num, '-', '',[rfReplaceAll]);
-if Length(Num) = 11 then
-  begin
-    try
-      for i:=1 to 11 do Cedula[i]:=StrToInt(Num[i]);
-    except
-      Exit;
-    end;
-   end
-    else Exit;
+def onclic1():
+    c = 0
+    result = 0
+    p = 0
+    uj = 0    
+    a = list(cedulavar.get())
+    b = [1,2,1,2,1,2,1,2,1,2]
+    if len(a) < 11 :
+        labela.set("Cedula Incorrecta")
+    else :
+        for i in range(10):        
+            c = int(a[i]) * b[i]
+            if c >= 10 :
+                d = list(str(c))
+                c = int(d[0]) + int(d[1])
+            result = result + c     
+        
+        p = int(list(str(result))[0] + "0")    
+        uj = ( p / 10) * 10
+        if uj < result :
+            result = (uj + 10) - result
+        else :
+            result = uj - result 
+        
+        if result == int(a[10]) :
+            labela.set("Cedula Correcta")
+        else :
+            labela.set("Cedula Incorrecta")
+            
 
-Suma:=0;
-
-for i:=1 to 10 do
-  Begin
-  R[i]:=Cedula[i]*TablaCedula[i];
-
-  if length(inttostr(R[i])) > 1 then
-     Begin
-         a := strtoint(copy(R[i].ToString,0,1));
-         b := strtoint(copy(inttostr(R[i]),2,1));
-         comodin := ' > 1 ';
-       end
-      else
-       Begin
-         a := 0;
-         b := strtoint(copy(inttostr(R[i]),0,1));
-         comodin := ' <= 1 ';
-       end;
-        // Calcular la sumatoria de los resultados
-       memo1.lines.add(Cedula[i].ToString+' x '+TablaCedula[i].ToString+' = '+R[i].ToString+comodin+' = '+(a+b).ToString );
-       Suma:=Suma+a+b;
-  end;
-Division:=(Suma div 10)*10;
-memo1.Lines.Add('Resultado = '+Suma.ToString);
-memo1.Lines.Add('Recalculo = (('+Suma.ToString+' / 10) * 10) = '+Division.ToString );
-
-if Division < Suma then
-  begin
-   memo1.Lines.Add('Verificador Si('+Division.ToString+' < '+Suma.ToString+') = ('+Division.ToString+' + 10) - '+Suma.ToString );
-   Division := Division + 10;
-  end
- else
-  memo1.Lines.Add('Verificador ('+Division.ToString+' - '+Suma.ToString+') ' );
-
-  DigitoVerif := Division - Suma;
-
-  memo1.Lines.Add('DigitoVerif = '+DigitoVerif.ToString);
-
-if DigitoVerif = Cedula[11] then
-    result:=true;
-
-  if result = true then
-    Memo1.Lines.Add('CEDULA CORRECTA!!!!')
-   else
-    Memo1.Lines.Add('CEDULA INCORRECTA!!!!')
-
-
-end; 
+    print(result)  
 
 ```
 
