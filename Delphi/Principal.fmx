@@ -54,7 +54,7 @@ object Form2: TForm2
     Size.Height = 33.000000000000000000
     Size.PlatformDefault = False
     TextSettings.Font.Size = 23.000000000000000000
-    Text = 'Validador de C'#233'dula y RNC'
+    Text = 'Validador de C'#233'dula y RNC o'
     TabOrder = 3
   end
 end
